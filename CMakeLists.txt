@@ -29,5 +29,16 @@ ament_target_dependencies(
 )
 install(TARGETS pipewrite
   DESTINATION lib/${PROJECT_NAME})
+  
+# udpsend node
+# this depends on boost::asio – dependency seems to be fulfilled implicitly when using ros2 foxy
+add_executable(udpsend src/udpsend.cpp)
+ament_target_dependencies(
+  udpsend
+  "rclcpp"
+  "image_transport"
+)
+install(TARGETS udpsend
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
